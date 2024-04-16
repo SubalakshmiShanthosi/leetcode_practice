@@ -4,6 +4,15 @@ Given an array of integers nums and an integer target, return indices of the two
 
 Assume that there is exactly only **one solution** and you may not use the same element twice. 
 
+```coffee
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+```
+
+
 Methodology for solving in O(n) --> 
 
 Additional space by having HashMap - 
