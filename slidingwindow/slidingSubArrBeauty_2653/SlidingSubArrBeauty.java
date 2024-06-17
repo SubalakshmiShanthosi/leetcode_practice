@@ -12,45 +12,48 @@ import java.util.TreeMap;
 public class SlidingSubArrBeauty {
     
 
-    public static int getKthSmallest(Map<Integer, Integer> aTreeMap, int x)
-    {  
-        
-      int counter = 0;
-      for(Integer val : aTreeMap.keySet())
-      {
-        if(val<0)
-            counter+=aTreeMap.get(val);
-        else 
-            return 0; 
-        
-        if(counter>=x)
-        {
-            return val;
+   //returns the xth smallest num or 0 otherwise
+   private static int getXthSmallestNum(TreeMap<Integer, Integer> map, int x){
+    int runningCount = 0;
+    for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+        int key = entry.getKey();
+        int val = entry.getValue();
+
+        //consider only if the key is less than 0
+        if(key < 0){
+            //increment the count by the number of keys present
+            runningCount += val;
         }
-      }
-      return 0; 
+        //check at any point we found out the xth smallest num
+        //then return it
+        if(runningCount >= x)
+            return key;
     }
-    public static List<Integer> getSubArrayBeauty(int[]inputArray,int k , int x)
+
+    //return the default as 0 if we don't find the xth element.
+    return 0;
+}
+
+    public static int[] getSubArrayBeauty(int[]inputArray,int k , int x)
     {
-        List<Integer> resultElements = new ArrayList<Integer>();
-        Map<Integer, Integer> aTreeMap = new TreeMap<Integer,Integer>();
-        int windowEnd=0;
-        for(int windowStart=0;windowStart<inputArray.length;windowStart++)
-        {
-            while(windowEnd<inputArray.length && (windowEnd-windowStart+1)<k)
-            {
-                if(inputArray[windowEnd]< 0)
-                    aTreeMap.put(inputArray[windowEnd], aTreeMap.getOrDefault(inputArray[windowEnd],0)+1);
-                windowEnd++;
-            }
-            if((windowEnd-windowStart+1) == k)
-                resultElements.add(getKthSmallest(aTreeMap,x));
-
-        }
-
-
-        return resultElements;
-    }
+         //store the nums in a sorted map or call freq map
+         Map<Integer,Integer> map = new TreeMap<Integer, Integer>();//Num vs Num Count...Default is asc sorted
+         //iterate over the nums array
+         int n = inputArray.length, resultIdx = 0;
+         int[] result = new int[n - k + 1];
+         for(int i = 0; i < n; i++){
+             //first thing to store in the map
+             map.put(inputArray[i], map.getOrDefault(inputArray[i], 0) + 1);
+             //remove older entries
+             int outOfWindow = i - k < 0 ? Integer.MAX_VALUE : inputArray[i - k];
+             map.put(outOfWindow, map.getOrDefault(outOfWindow, 0) - 1);
+             if(i >= k-1){
+                 //since by now we should only have nums in the curr window
+                 //we can ask the helper to fetch the xth element or 0 otherwise
+                 result[resultIdx++] = getXthSmallestNum((TreeMap<Integer, Integer>) map, x);
+             }
+         }
+         return result;    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader bin = new BufferedReader(new InputStreamReader(System.in));
@@ -58,8 +61,7 @@ public class SlidingSubArrBeauty {
         int x = inputArray[inputArray.length-1];
         int k = inputArray[inputArray.length-2];
         inputArray = Arrays.copyOf(inputArray,inputArray.length-2);
-        System.out.println(Arrays.toString(inputArray));
-        List<Integer> subArrBeautyRes = getSubArrayBeauty(inputArray,k,x);
-        System.out.println(subArrBeautyRes.toString());
+        int[] subArrBeautyRes = getSubArrayBeauty(inputArray,k,x);
+        System.out.println(Arrays.toString(subArrBeautyRes));
     }
 }
