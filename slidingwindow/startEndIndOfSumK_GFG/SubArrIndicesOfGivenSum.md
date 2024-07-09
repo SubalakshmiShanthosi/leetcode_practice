@@ -29,10 +29,15 @@ Explanation: The sum of elements from 1st to 5th position is 15.
 Sliding window with variable size window size 
 
 Here check for windowSum >= s 
+
     If so shrink the sliding window
+
     Remove elements from windowSum (indexces windowStart --> ith position) till the position at which windowSum exceeds s
+
     Increment windowStart
 Check if windowSum == s 
+
+
     Add windowStart+1 windowEnd+1 indices in result
 
 
