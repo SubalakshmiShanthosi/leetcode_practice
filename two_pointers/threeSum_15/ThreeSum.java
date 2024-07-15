@@ -1,4 +1,4 @@
-package two_pointers;
+package two_pointers.threeSum_15;
 
 import java.io.BufferedReader;
 import java.io.IOException;
