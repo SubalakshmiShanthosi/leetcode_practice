@@ -34,14 +34,14 @@ Explanation: The only possible triplet sums up to 0.
     First sort the entire array in ascending order
 
     Then Run one loop starting from i-> 0 to Arr.length        
-        Check for equals of consecutive elements -> i!=0 && arr[i] == arr[i+1] 
+        Check for equals of consecutive elements -> i!=0 && arr[i] == arr[i-1] 
                 then continue i.e) skip the iteration i 
         Have pointer j=> i+1 , k => Arr.Length -1
         Check if Arr[i]+Arr[j]+Arr[k] == 0
                 Then add entries to the result set 
                 Increment j, decrement k
                 Skip duplicates for consecutive indices of k and j
-                
+
         Check if Arr[i]+Arr[j]+Arr[k] > 0
                 Increment k
         Check if Arr[i] + Arr[j] + Arr[k] < 0
