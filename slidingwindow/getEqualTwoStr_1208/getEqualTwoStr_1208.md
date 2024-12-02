@@ -25,7 +25,7 @@ Output: 1
 Explanation: You cannot make any change, so the maximum length is 1.
 ```
 
-# Approach
+## Approach
 
 Sliding window with variable size window
 Pseudocode:
