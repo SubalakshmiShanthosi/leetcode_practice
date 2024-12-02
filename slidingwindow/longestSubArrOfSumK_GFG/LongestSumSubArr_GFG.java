@@ -12,7 +12,6 @@ public class LongestSumSubArr_GFG {
     {
         int maxLen=0;
         long windowSum=0;
-        int windowStart=0;
         Map<Long,Integer> sumHMap = new HashMap<Long,Integer>();
         for(int windowEnd=0;windowEnd<inputArray.length;windowEnd++)
         {   
