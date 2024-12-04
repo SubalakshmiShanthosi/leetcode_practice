@@ -28,12 +28,12 @@ Explanation: You must delete one element.
 ## Approach
 
 Sliding window with variable window size
-Max Consecutive Ones III variation 
+Max Consecutive Ones III variation
 
 Initialize k=1, windowEnd=0,windowStart=0
-Loop windowEnd 0 to arr.length 
-    if arr[windowEnd++] == 0 
+Loop windowEnd 0 to arr.length
+    if arr[windowEnd++] == 0
         Decrement k
-    if k<0 && arr[windowStart++] == 0 
+    if k<0 && arr[windowStart++] == 0
         Increment k
-Return windowEnd- windowStart -1 
+Return windowEnd- windowStart -1
