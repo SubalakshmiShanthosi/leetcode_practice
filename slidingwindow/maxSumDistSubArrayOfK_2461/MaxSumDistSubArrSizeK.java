@@ -10,36 +10,35 @@ import java.util.Set;
 public class MaxSumDistSubArrSizeK {
     
 
-    public static int getMaxSumOfKDistContElem(int[]inputArray,int k)
+    public static long getMaxSumOfKDistContElem(int[]nums,int k)
     {
-        int maxSum =0;
+        long maxSum=0;
         Set<Integer> inpArrayHSet = new HashSet<Integer>();
         int windowEnd=0;
-        int windowSum=0;
-
-        for(int windowStart=0; windowStart<inputArray.length;windowStart++)
+        long windowSum=0;
+        for(int windowStart=0; windowStart<nums.length;windowStart++)
         {
-            while(windowEnd<inputArray.length && !inpArrayHSet.contains(inputArray[windowEnd]) && inpArrayHSet.size() < k)
+            while(windowEnd<nums.length && !inpArrayHSet.contains(nums[windowEnd]) && inpArrayHSet.size() < k)
             {
-                inpArrayHSet.add(inputArray[windowEnd]);
-                windowSum+=inputArray[windowEnd];
+                inpArrayHSet.add(nums[windowEnd]);
+                windowSum+=nums[windowEnd];
                 windowEnd++;
             }
             if(inpArrayHSet.size() == k)
                 maxSum = Math.max(windowSum,maxSum);
-            inpArrayHSet.remove(inputArray[windowStart]);
-            windowSum = windowSum - inputArray[windowStart];
+            inpArrayHSet.remove(nums[windowStart]);
+            windowSum = windowSum - nums[windowStart];
         }
 
         return maxSum;
-    }
+     }
 
     public static void main(String[] args) throws IOException{
         BufferedReader bin = new BufferedReader(new InputStreamReader(System.in));
         int[] inputArray = Arrays.stream(bin.readLine().split("\\s+")).mapToInt(Integer::parseInt).toArray();
         int k = inputArray[inputArray.length-1];
         inputArray = Arrays.copyOf(inputArray,inputArray.length-1);
-        int maxSumRes = getMaxSumOfKDistContElem(inputArray,k);
+        long maxSumRes = getMaxSumOfKDistContElem(inputArray,k);
         System.out.println(maxSumRes);
     }
 }
