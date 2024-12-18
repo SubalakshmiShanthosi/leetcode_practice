@@ -1,8 +1,8 @@
-# Two Sum 
+# Two Sum
 
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
-Assume that there is exactly only **one solution** and you may not use the same element twice. 
+Assume that there is exactly only **one solution** and you may not use the same element twice.
 
 ```coffee
 Example 1:
@@ -12,18 +12,15 @@ Output: [0,1]
 Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 ```
 
+Methodology for solving in O(n) -->
 
-Methodology for solving in O(n) --> 
-
-Additional space by having HashMap - 
-        
-        Interate once of the array
-        Find target - array[index] exists on HMap? 
-        If 
+Additional space by having HashMap -
+        Iterate once of the array
+        Find target - array[index] exists on HMap?
+        If
             Found then return the HMap(temp) and index as result
-        Else 
+        Else
             Add array[index], index to HMap.
-
 
 ```java
 import java.util.*;
@@ -46,4 +43,4 @@ class Solution {
         return resultIndices;
     }
 }
-``` 
+```
