@@ -32,6 +32,8 @@ public class CntSubArrWithKDistIntgers {
                 
 
             }
+
+            System.out.println("count: "+ count);
             count +=(windowEnd-windowStart+1);
         }
        

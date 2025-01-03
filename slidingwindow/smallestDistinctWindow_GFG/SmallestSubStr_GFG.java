@@ -19,25 +19,22 @@ public class SmallestSubStr_GFG {
         {
             hashSetCharUnique.add(aChar);
         }
+        int count =0;
         for(int windowEnd=0; windowEnd<inpString.length();windowEnd++)
         {
             char inChar = inpString.charAt(windowEnd);
-             charFreqHMap.put(inChar, charFreqHMap.getOrDefault(inChar, 0)+1);
-            if(charFreqHMap.size()==hashSetCharUnique.size())
+            charFreqHMap.put(inChar, charFreqHMap.getOrDefault(inChar, 0)+1);
+            if(charFreqHMap.get(inChar)==1)
+                count++;
+            while(windowStart<inpString.length() && count == hashSetCharUnique.size())
             {
-                //Shrink sliding window
-                char leftChar = inpString.charAt(windowStart);
-                while (charFreqHMap.get(leftChar)>1) {
-                    charFreqHMap.put(leftChar,charFreqHMap.getOrDefault(leftChar, 0) -1);
-                    
+                minLen = Math.min(minLen, windowEnd- windowStart+1);
+                charFreqHMap.put(inpString.charAt(windowStart),charFreqHMap.getOrDefault(inpString.charAt(windowStart),0)-1);
+                if(charFreqHMap.get(inpString.charAt(windowStart))==0)
+                    count--;
                 windowStart++;
-                }
-                
-                
-                
-                minLen = Math.min(minLen,windowEnd-windowStart+1);
             }
-        }
+        }  
         return minLen;
     }
     public static void main(String[] args) throws IOException{

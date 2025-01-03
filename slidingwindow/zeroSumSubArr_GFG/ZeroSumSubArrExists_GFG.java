@@ -15,14 +15,10 @@ public class ZeroSumSubArrExists_GFG {
         for(int windowEnd=0;windowEnd<inputArr.length;windowEnd++)
         {
             windowSum+=inputArr[windowEnd];
-
-            if(!windowSumHashSet.contains(windowSum))
-                windowSumHashSet.add(windowSum);
             
             if(inputArr[windowEnd]==0 || windowSumHashSet.contains(windowSum) || windowSum==0)
                 return true;
-            
-            
+            windowSumHashSet.add(windowSum);
 
         }
 
