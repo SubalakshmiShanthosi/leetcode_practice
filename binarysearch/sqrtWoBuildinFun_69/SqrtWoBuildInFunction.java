@@ -9,17 +9,20 @@ public class SqrtWoBuildInFunction {
 
     private static int mySqrt(int inputNum)
     {
-        int left=0;
-        int right = inputNum+1; 
-        while(left<right)
+        long left=1;
+        long right = inputNum;
+        long ans = 0; 
+        while(left<=right)
         {
-            int middle = left + (right - left) /2;
+            long middle = left + (right - left) /2;
             if(middle*middle > inputNum)
-               right = middle; 
-            else
+               right = middle -1; 
+            else{
+                ans = middle;
                 left = middle+1;
+            }
         }   
-        return left-1;
+        return (int) ans;
     }
     public static void main(String[] args) throws IOException {
         BufferedReader bin = new BufferedReader(new InputStreamReader(System.in));
