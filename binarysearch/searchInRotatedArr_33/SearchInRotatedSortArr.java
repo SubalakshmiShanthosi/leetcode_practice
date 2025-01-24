@@ -9,7 +9,6 @@ public class SearchInRotatedSortArr {
     
     private static int search(int[] nums, int target)
     {
-        int searchIndex=-1;
         int low = 0;
         int high = nums.length-1;
         while(low<=high)
